@@ -1,0 +1,17 @@
+    // artfulrobot {{{
+    $field_names = [];
+    if ($fieldName == 'sort_name') {
+      $field_names []= self::caseImportant($op) ? "LOWER(contact_a.sort_name)" : "contact_a.sort_name";
+    }
+    else {
+      $field_names []= self::caseImportant($op) ? "LOWER(contact_a.display_name)" : "contact_a.display_name";
+    }
+    if ($config->includeNickNameInName) {
+      $field_names []= self::caseImportant($op) ? "LOWER(contact_a.nick_name)" : "contact_a.nick_name";
+    }
+    if ($config->includeEmailInName) {
+      $field_names []= 'civicrm_email.email';
+    }
+    $sub = windle_civicrm_name_search($value, $op, $field_names);
+    // }}}
+
