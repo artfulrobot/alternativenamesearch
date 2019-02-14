@@ -11,7 +11,7 @@
   <urls>
     <url desc="Main Extension Page">https://github.com/artfulrobot/alternativenamesearch</url>
     <url desc="Documentation">https://github.com/artfulrobot/alternativenamesearch</url>
-    <url desc="Support">https://github.com/artfulrobot/alternativenamesearch<Paste></url>
+    <url desc="Support">https://github.com/artfulrobot/alternativenamesearch</url>
     <url desc="Licensing">http://www.gnu.org/licenses/agpl-3.0.html</url>
   </urls>
   <releaseDate>2019-02-14</releaseDate>

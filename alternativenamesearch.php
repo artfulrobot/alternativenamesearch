@@ -188,6 +188,37 @@ function alternativenamesearch_patchwork_apply_patch($original, &$code) {
     $code = implode("\n", $new_code);
     Civi::log()->notice("Patchwork successful on alternativenamesearch", []);
   }
+  elseif ($original === '/api/v3/Contact.php') {
+    // Patch the API file.
+    $code = explode("\n", $code);
+    $new_code = [];
+    while ($code && $code[0] != '    // Search by id should be exact') {
+      $new_code[] = array_shift($code);
+    }
+    if (!$code) {
+      Civi::log()->notice("Patchwork failed on alternativenamesearch 3", []);
+      return FALSE;
+    }
+
+    // Now scan down to the line that sets the $whereClause variable.
+    $lines = 0;
+    while ($code && !preg_match('/^    \$whereClause =/', $code[0])) {
+      $new_code[] = array_shift($code);
+      $lines++;
+    }
+    // Make sure nothing too much has changed.
+    if ($lines > 15) {
+      Civi::log()->notice("Patchwork failed on alternativenamesearch 4", []);
+      return FALSE;
+    }
+    $new_code[] = '    // Next line inserted by alternativenamesearch';
+    $new_code[] = '    $whereClause = alternativenamesearch_rework_api_where($name, $includeNickName, $where);';
+    $new_code[] = '    // ' . array_shift($code);
+
+    // Copy the rest.
+    $new_code = array_merge($new_code, $code);
+    $code = implode("\n", $new_code);
+  }
 }
 
 /**
@@ -204,6 +235,7 @@ function alternativenamesearch_patchwork_apply_patch($original, &$code) {
  * @return string
  */
 function alternativenamesearch_get_subs($name, $op, $fieldName, $config) {
+  Civi::log()->info("Searching $name $op $fieldName");
   $field_names = [];
   if ($fieldName == 'sort_name') {
     $field_names []= CRM_Contact_BAO_Query::caseImportant($op) ? "LOWER(contact_a.sort_name)" : "contact_a.sort_name";
@@ -272,4 +304,40 @@ function alternativenamesearch_get_subs($name, $op, $fieldName, $config) {
   }
 
   return "(" . implode(' OR ', $or_group) . ")";
+}
+/**
+ *
+ * Function to change the where clause of Contact quicksearch.
+ *
+ * @param string $name
+ * @param string $includeNickName
+ * @param string $where
+ *
+ * @return string
+ */
+function alternativenamesearch_rework_api_where($name, $includeNickName, $where) {
+
+  // We need to generate the search for the name.
+  // Aparently we can trust that the $name values are all ready-escaped for MySQL.
+  //
+  // Civi offers a single LIKE search for name, but we want to take a space separated list; all the 'words' must be found in the name.
+  // Convert "foo bar baz" -> [ '%foo%', '%bar%', '%baz%' ]
+  // We also need to make sure that any names that appear n times match only names with that name in at least n times.
+  $name_counts = [];
+  foreach (preg_split('/\s+/', trim($name)) as $_) {
+    $name_counts += [$_ => 0];
+    $name_counts[$_]++;
+  }
+
+  $name_clauses = [];
+  foreach ($name_counts as $name => $_) {
+    if ($_ > 1) {
+      $name = rtrim(str_repeat("$name%", $_), '%');
+    }
+    $name_clauses[] = "sort_name LIKE '%$name%'";
+  }
+
+  $name_clauses = "( " . implode(' AND ', $name_clauses) . ") ";
+  $whereClause = " WHERE ( $name_clauses $includeNickName ) {$where} ";
+  return $whereClause;
 }
