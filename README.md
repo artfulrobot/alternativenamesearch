@@ -1,19 +1,17 @@
 # alternativenamesearch
 
-![Screenshot](/images/screenshot.png)
-
-(*FIXME: In one or two paragraphs, describe what the extension does and why one would download it. *)
+This changes the way name searching is done. It was developed to support people
+whose names do not have a definite order (no clearly delimited
+first/last/given/family names) and may include repeated names. Such
+names are common in many African countries.
 
 The extension is licensed under [AGPL-3.0](LICENSE.txt).
 
 ## Requirements
 
-* PHP v5.6+
-* CiviCRM (*FIXME: Version number*)
-
-## Installation (Web UI)
-
-This extension has not yet been published for installation via the web UI.
+* PHP v7.0+
+* CiviCRM 5.9+
+* The [patchwork](https://github.com/artfulrobot/patchwork/) extension.
 
 ## Installation (CLI, Zip)
 
@@ -22,7 +20,7 @@ install it with the command-line tool [cv](https://github.com/civicrm/cv).
 
 ```bash
 cd <extension-dir>
-cv dl alternativenamesearch@https://github.com/FIXME/alternativenamesearch/archive/master.zip
+cv dl alternativenamesearch@https://github.com/artfulrobot/alternativenamesearch/archive/master.zip
 ```
 
 ## Installation (CLI, Git)
@@ -31,14 +29,20 @@ Sysadmins and developers may clone the [Git](https://en.wikipedia.org/wiki/Git) 
 install it with the command-line tool [cv](https://github.com/civicrm/cv).
 
 ```bash
-git clone https://github.com/FIXME/alternativenamesearch.git
+git clone https://github.com/artfulrobot/alternativenamesearch.git
 cv en alternativenamesearch
 ```
 
 ## Usage
 
-(* FIXME: Where would a new user navigate to get started? What changes would they see? *)
+Once installed you will be able to search for people by entering their names (or
+parts of their names) in any order.
 
-## Known Issues
+Note that also if someone has a repeated name, eg. <em>Omer Ibrahim Omer Mohammed</em>
+you can enter <em>Omer</em> twice (e.g. search <em>Omer Omer</em>) and it will
+only find people who have <em>Omer</em> twice in their name.
 
-(* FIXME *)
+
+
+
+
