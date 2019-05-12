@@ -153,18 +153,19 @@ function alternativenamesearch_patchwork_apply_patch($original, &$code) {
       $new_code[] = array_shift($code);
     }
     if (!$code) {
+      Civi::log()->notice("Patchwork failed on alternativenamesearch 2.1", []);
       return FALSE;
     }
     // Ok, we found the function we need to change.
     // Copy down to a specific line.
     $lines = 0;
-    while ($code && $code[0] != '    $sub = array();') {
+    while ($code && $code[0] != '    $sub = [];') {
       $new_code[] = array_shift($code);
       $lines++;
     }
     if ($lines > 30) {
       // Something major has changed.
-      Civi::log()->notice("Patchwork failed on alternativenamesearch 2", []);
+      Civi::log()->notice("Patchwork failed on alternativenamesearch 2.2", []);
       return FALSE;
     }
 

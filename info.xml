@@ -15,12 +15,12 @@
     <url desc="Licensing">http://www.gnu.org/licenses/agpl-3.0.html</url>
   </urls>
   <releaseDate>2019-02-14</releaseDate>
-  <version>1.0</version>
+  <version>1.1</version>
   <develStage>stable</develStage>
   <compatibility>
-    <ver>5.0</ver>
+    <ver>5.13</ver>
   </compatibility>
-  <comments>This requires the patchwork extension</comments>
+  <comments>This requires the patchwork extension. This version will *only* work with 5.13+</comments>
   <requires>
     <ext>patchwork</ext>
   </requires>
