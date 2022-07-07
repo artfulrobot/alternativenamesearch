@@ -1,48 +1,11 @@
-# alternativenamesearch
+# Give Up GitHub
 
-This changes the way name searching is done. It was developed to support people
-whose names do not have a definite order (no clearly delimited
-first/last/given/family names) and may include repeated names. Such
-names are common in many African countries.
+This project has given up GitHub.  ([See Software Freedom Conservancy's *Give Up  GitHub* site for details](https://GiveUpGitHub.org).)
 
-The extension is licensed under [AGPL-3.0](LICENSE.txt).
+You can now find this project at [CiviCRM's gitlab](https://github.com/artfulrobot/alternativenamesearch) instead.
 
-## Requirements
+Any use of this project's code by GitHub Copilot, past or present, is done without our permission.  We do not consent to GitHub's use of this project's code in Copilot.
 
-* PHP v7.0+
-* CiviCRM 5.9+
-* The [patchwork](https://lab.civicrm.org/extensions/patchwork) extension.
+Join us; you can [give up GitHub](https://GiveUpGitHub.org) too!
 
-## Installation (CLI, Zip)
-
-Sysadmins and developers may download the `.zip` file for this extension and
-install it with the command-line tool [cv](https://github.com/civicrm/cv).
-
-```bash
-cd <extension-dir>
-cv dl alternativenamesearch@https://github.com/artfulrobot/alternativenamesearch/archive/master.zip
-```
-
-## Installation (CLI, Git)
-
-Sysadmins and developers may clone the [Git](https://en.wikipedia.org/wiki/Git) repo for this extension and
-install it with the command-line tool [cv](https://github.com/civicrm/cv).
-
-```bash
-git clone https://github.com/artfulrobot/alternativenamesearch.git
-cv en alternativenamesearch
-```
-
-## Usage
-
-Once installed you will be able to search for people by entering their names (or
-parts of their names) in any order.
-
-Note that also if someone has a repeated name, eg. <em>Omer Ibrahim Omer Mohammed</em>
-you can enter <em>Omer</em> twice (e.g. search <em>Omer Omer</em>) and it will
-only find people who have <em>Omer</em> twice in their name.
-
-
-
-
-
+![Logo of the GiveUpGitHub campaign](https://sfconservancy.org/img/GiveUpGitHub.png)
