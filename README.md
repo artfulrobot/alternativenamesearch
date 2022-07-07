@@ -11,7 +11,7 @@ The extension is licensed under [AGPL-3.0](LICENSE.txt).
 
 * PHP v7.0+
 * CiviCRM 5.9+
-* The [patchwork](https://github.com/artfulrobot/patchwork/) extension.
+* The [patchwork](https://lab.civicrm.org/extensions/patchwork) extension.
 
 ## Installation (CLI, Zip)
 
