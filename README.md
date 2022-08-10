@@ -2,7 +2,7 @@
 
 This project has given up GitHub.  ([See Software Freedom Conservancy's *Give Up  GitHub* site for details](https://GiveUpGitHub.org).)
 
-You can now find this project at [CiviCRM's gitlab](https://github.com/artfulrobot/alternativenamesearch) instead.
+You can now find this project at [CiviCRM's gitlab](https://lab.civicrm.org/extensions/alternativenamesearch/) instead.
 
 Any use of this project's code by GitHub Copilot, past or present, is done without our permission.  We do not consent to GitHub's use of this project's code in Copilot.
 
